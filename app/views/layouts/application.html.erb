@@ -2,12 +2,20 @@
 <html>
 <head>
   <title>PartyQuiz</title>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= stylesheet_link_tag    "application", media: "all" %>
+  <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
+  <% unless Rails.env.production? %>
+    <script src="/client/client-dev/goog/base.js"></script>
+    <script src="/client/client-dev.js"></script>
+    <script>goog.require("party_quiz.core");</script>
+  <% end %>
 </head>
 <body>
 
+<div id="app"></div>
+<div id="modal-wrapper"></div>
+</div>
 <%= yield %>
 
 </body>
